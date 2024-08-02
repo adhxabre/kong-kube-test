@@ -9,7 +9,7 @@ image:
   tag: "3.7.1.1"
 
 secretVolumes:
-- kong-cluster-cert
+  - kong-cluster-cert
 
 env:
   role: control_plane
@@ -23,19 +23,19 @@ env:
   pg_host: kong-cp-postgresql.kong.svc.cluster.local
   pg_ssl: "on"
 
-  admin_gui_url: http://localhost
-  admin_gui_api_url: http://localhost
+  admin_gui_url: http://localhost:8002
+  admin_gui_api_url: http://localhost:8001
 
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
 
   password: kong_admin_password
 
 enterprise:
-  enabled: true
-  license-secret: kong-enterprise-license
   rbac:
     enabled: true
     admin_gui_auth: basic-auth
+  enabled: true
+  license-secret: kong-enterprise-license
 
 admin:
   enabled: true
