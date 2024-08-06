@@ -1,8 +1,5 @@
 ingressController:
-  enabled: true
-  env:
-    publish_service: kong/kong-dp-kong-proxy
-    kong_admin_token: kong_admin_password
+  enabled: false
 
 image:
   repository: kong/kong-gateway

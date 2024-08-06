@@ -25,19 +25,6 @@ enterprise:
 
 proxy:
   enabled: true
-  http:
-    enabled: true
-  tls:
-    enabled: false
-  annotations:
-    beta.cloud.google.com/backend-config: '{"default": "kong-hc"}'
-  ingress:
-    enabled: true
-    hostname: proxy.bahanatcw.com
-    path: /
-    pathType: Prefix
-    annotations:
-      kubernetes.io/ingress.class: gce
 
 admin:
   enabled: false
