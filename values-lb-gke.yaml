@@ -1,0 +1,27 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: kong-hc
+  namespace: kong
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8000
+      name: http
+    - port: 443
+      targetPort: 8443
+      name: https
+    - port: 8001
+      targetPort: 8001
+      name: admin
+    - port: 8002
+      targetPort: 8002
+      name: manager
+  healthCheck:
+    checkIntervalSec: 15
+    port: 8100
+    type: HTTP
+    requestPath: /status
+  selector:
+    app: kong

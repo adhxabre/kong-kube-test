@@ -21,19 +21,16 @@ env:
   pg_user: kong
   pg_password: demo123
   pg_host: kong-cp-postgresql.kong.svc.cluster.local
-  pg_ssl: "on"
+  pg_ssl: "off"
 
-  admin_gui_url: http://localhost:8002
-  admin_gui_api_url: http://localhost:8001
+  admin_gui_url: http://<EXTERNAL_IP>
+  admin_gui_api_url: http://<EXTERNAL_IP>
 
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
 
   password: kong_admin_password
 
 enterprise:
-  rbac:
-    enabled: true
-    admin_gui_auth: basic-auth
   enabled: true
   license-secret: kong-enterprise-license
 
@@ -46,7 +43,7 @@ admin:
 
   ingress:
     enabled: true
-    hostname: localhost
+    hostname: <EXTERNAL_IP>
     path: /
     pathType: Prefix
     ingressClassName: kong
@@ -70,7 +67,7 @@ manager:
 
   ingress:
     enabled: true
-    hostname: localhost
+    hostname: <EXTERNAL_IP>
     path: /
     pathType: Prefix
     ingressClassName: kong
