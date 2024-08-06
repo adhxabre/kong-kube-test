@@ -25,8 +25,8 @@ env:
 
   admin_gui_url: http://manager-kong.bahanatcw.com
   admin_gui_api_url: http://admin-kong.bahanatcw.com
-
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
+  admin_gui_auth: basic-auth
 
   password: kong_admin_password
 
