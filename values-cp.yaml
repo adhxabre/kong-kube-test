@@ -23,16 +23,17 @@ env:
   pg_host: kong-cp-postgresql.kong.svc.cluster.local
   pg_ssl: "off"
 
-  admin_gui_url: http://<EXTERNAL_IP>
-  admin_gui_api_url: http://<EXTERNAL_IP>
+  admin_gui_url: http://manager-kong.bahanatcw.com
+  admin_gui_api_url: http://admin-kong.bahanatcw.com
 
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
 
   password: kong_admin_password
 
 enterprise:
-  enabled: true
-  license-secret: kong-enterprise-license
+  rbac:
+    enabled: true
+    admin_gui_auth: basic-auth
 
 admin:
   enabled: true
@@ -40,13 +41,15 @@ admin:
     enabled: true
   tls:
     enabled: false
-
+  annotations:
+    beta.cloud.google.com/backend-config: '{"default": "kong-hc"}'
   ingress:
     enabled: true
-    hostname: <EXTERNAL_IP>
+    hostname: admin-kong.bahanatcw.com
     path: /
     pathType: Prefix
-    ingressClassName: kong
+    annotations:
+      kubernetes.io/ingress.class: gce-internal
 
 cluster:
   enabled: true
@@ -64,13 +67,15 @@ manager:
     enabled: true
   tls:
     enabled: false
-
+  annotations:
+    beta.cloud.google.com/backend-config: '{"default":"kong-hc"}'
   ingress:
     enabled: true
-    hostname: <EXTERNAL_IP>
+    hostname: manager-kong.bahanatcw.com
     path: /
     pathType: Prefix
-    ingressClassName: kong
+    annotations:
+      kubernetes.io/ingress.class: gce-internal
 
 proxy:
   enabled: false

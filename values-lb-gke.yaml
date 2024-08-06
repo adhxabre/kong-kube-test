@@ -1,7 +1,7 @@
-apiVersion: cloud.google.com/v1
-kind: BackendConfig
+apiVersion: v1
+kind: Service
 metadata:
-  name: kong-hc
+  name: kong-proxy
   namespace: kong
 spec:
   type: LoadBalancer
@@ -18,10 +18,5 @@ spec:
     - port: 8002
       targetPort: 8002
       name: manager
-  healthCheck:
-    checkIntervalSec: 15
-    port: 8100
-    type: HTTP
-    requestPath: /status
   selector:
     app: kong

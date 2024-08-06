@@ -20,9 +20,6 @@ env:
   cluster_cert_key: /etc/secrets/kong-cluster-cert/tls.key
 
 enterprise:
-  rbac:
-    enabled: true
-    admin_gui_auth: basic-auth
   enabled: true
   license_secret: kong-enterprise-license
 
