@@ -23,12 +23,12 @@ env:
   admin_gui_url: http://manager-kong.bahanatcw.com
   admin_gui_api_url: http://admin-kong.bahanatcw.com
   admin_gui_session_conf: '{"secret":"secret","storage":"kong","cookie_secure":false}'
-  admin_gui_auth: basic-auth
-  enforce_rbac: "on"
 
   password: kong_admin_password
 
 enterprise:
+  enabled: true
+  license_secret: kong-enterprise-license
   rbac:
     enabled: true
     admin_gui_auth: basic-auth
@@ -40,14 +40,14 @@ admin:
   tls:
     enabled: false
   annotations:
-    beta.cloud.google.com/backend-config: '{"default": "kong-hc"}'
+    beta.cloud.google.com/backend-config: '{"default":"kong-hc"}'
   ingress:
     enabled: true
     hostname: admin-kong.bahanatcw.com
     path: /
     pathType: Prefix
     annotations:
-      kubernetes.io/ingress.class: gce
+      kubernetes.io/ingress.class: gce-internal
 
 cluster:
   enabled: true
@@ -73,7 +73,7 @@ manager:
     path: /
     pathType: Prefix
     annotations:
-      kubernetes.io/ingress.class: gce
+      kubernetes.io/ingress.class: gce-internal
 
 proxy:
   enabled: false
