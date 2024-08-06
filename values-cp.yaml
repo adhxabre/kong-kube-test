@@ -50,7 +50,7 @@ admin:
     path: /
     pathType: Prefix
     annotations:
-      kubernetes.io/ingress.class: gce-internal
+      kubernetes.io/ingress.class: gce
 
 cluster:
   enabled: true
@@ -76,7 +76,7 @@ manager:
     path: /
     pathType: Prefix
     annotations:
-      kubernetes.io/ingress.class: gce-internal
+      kubernetes.io/ingress.class: gce
 
 proxy:
   enabled: false
